@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CryptoCurrencySOLID.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,46 +7,64 @@ using System.Threading.Tasks;
 
 namespace CryptoCurrencySOLID.Abstract
 {
-    internal class Bitcoin : BaseCurrency
+    internal class Bitcoin : BaseCurrency, ICurrencySendWithAdress
     {
-        public override string CurrencyBuy()
+        public override string CurrencyBuy(decimal amount, string coinId, decimal buyingPrice)
         {
-            throw new NotImplementedException();
+            return String.Concat("Kodu " + coinId + " olan coinden " + amount + " $ tutarında"+ buyingPrice+" fiyatından alım gerçekleşti.");
         }
 
-        public override string CurrencySell()
+        public override string CurrencySell(decimal amount, string coinId, decimal sellingPrice)
         {
-            throw new NotImplementedException();
+            return String.Concat("Kodu " + coinId + " olan coinden " + amount + " $ tutarında+"+sellingPrice+" fiyatından satış gerçekleşti.");
+        }
+
+        public string CurrencySendWithAdress(string adress, string coinId, decimal sendingFee, decimal sendingAmount)
+        {
+            return String.Concat(adress + " adrese " + coinId + " coini " + (sendingAmount - sendingFee) + " miktarında gönderildi.");
         }
 
         public override string GetCurrencyAlgorithm()
         {
-            throw new NotImplementedException();
+            return "POW";
         }
 
         public override string GetCurrencyCode()
         {
-            throw new NotImplementedException();
+            return "BTC";
+        }
+
+        public override decimal GetCurrencyCurrentSupply()
+        {
+            return 19121000;
         }
 
         public override string GetCurrencyDescription()
         {
-            throw new NotImplementedException();
+            return "First cryptocurrency world wide created by Satoshi Nakamoto";
         }
 
-        public override string GetCurrencyMarketCap()
+        public override decimal GetCurrencyMarketCap()
         {
-            throw new NotImplementedException();
+            return 465000000000;
         }
 
         public override string GetCurrencyName()
         {
-            return "bitcoin";
+            return "Bitcoin";
         }
 
-        public override string GetCurrencyPrice(int price, string moneyRate)
+        public override decimal GetCurrencyPrice(string moneyRate)
         {
-            return price + "Dollar";
+            if (moneyRate != "Bitcoin" && moneyRate == "Dollar")
+            {
+                return (GetCurrencyMarketCap() / GetCurrencyCurrentSupply());
+            }
+            else
+            {
+                return 0;
+            }
+            
         }
         public override string ToString()
         {

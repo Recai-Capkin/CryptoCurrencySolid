@@ -7,41 +7,46 @@ using System.Threading.Tasks;
 
 namespace CryptoCurrencySOLID.Abstract.Currency
 {
-    public class Ripple : BaseCurrency, ICurrencySendWithTag
+    public class Ripple : BaseCurrency, ICurrencySendWithTag, IStake
     {
-        public override string CurrencyBuy()
+        public override string CurrencyBuy(decimal amount, string coinId, decimal buyingPrice)
         {
-            throw new NotImplementedException();
+            return String.Concat("Kodu " + coinId + " olan coinden " + amount + " $ tutarında" + buyingPrice + "fiyatından alım gerçekleşti.");
         }
 
-        public override string CurrencySell()
+        public override string CurrencySell(decimal amount, string coinId, decimal sellingPrice)
         {
-            throw new NotImplementedException();
+            return String.Concat("Kodu " + coinId + " olan coinden " + amount + " $ tutarında+" + sellingPrice + " fiyatından satış gerçekleşti.");
         }
 
-        public string CurrencySendWithTag(string tag, string adress, string currencyType, float sendingFee)
+        public string CurrencySendWithTag(string tag, string adress, string coinId, decimal sendingFee, decimal sendingAmount)
         {
-            throw new NotImplementedException();
+            return String.Concat(adress + " adrese " + tag + " tagı ile" + coinId + " coini " + (sendingAmount - sendingFee) + " miktarında gönderildi.");
         }
 
         public override string GetCurrencyAlgorithm()
         {
-            throw new NotImplementedException();
+            return "Custom Consensus";
         }
 
         public override string GetCurrencyCode()
         {
-            throw new NotImplementedException();
+            return "XRP";
+        }
+
+        public override decimal GetCurrencyCurrentSupply()
+        {
+            return 49100000000;
         }
 
         public override string GetCurrencyDescription()
         {
-            throw new NotImplementedException();
+            return "";
         }
 
-        public override string GetCurrencyMarketCap()
+        public override decimal GetCurrencyMarketCap()
         {
-            throw new NotImplementedException();
+            return 18600000000;
         }
 
         public override string GetCurrencyName()
@@ -49,7 +54,24 @@ namespace CryptoCurrencySOLID.Abstract.Currency
             return "ripple";
         }
 
-        public override string GetCurrencyPrice(int price, string moneyRate)
+        public override decimal GetCurrencyPrice(string moneyRate)
+        {
+            if (moneyRate != "Ethereum" && moneyRate == "Dollar")
+            {
+                return (GetCurrencyMarketCap() / GetCurrencyCurrentSupply());
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public void StakeStart()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StakeStop()
         {
             throw new NotImplementedException();
         }

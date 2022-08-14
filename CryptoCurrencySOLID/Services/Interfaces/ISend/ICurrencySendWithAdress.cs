@@ -9,6 +9,6 @@ namespace CryptoCurrencySOLID.Services.Interfaces
     public interface ICurrencySendWithAdress
     {
         //todo Interface segregation yöntemi kullanıldı. Çünkü gönderim yapılırken kimisi adress ile kimisi adres ve tag ile gönderim yaptı
-        public string CurrencySendWithAdress(string adress, string currencyType, float sendingFee);
+        public string CurrencySendWithAdress(string adress, string coinId, decimal sendingFee, decimal sendingAmount);
     }
 }

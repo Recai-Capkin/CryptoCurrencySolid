@@ -13,12 +13,18 @@ namespace CryptoCurrencySOLID.Abstract
         public abstract string GetCurrencyDescription();
 
         //todo Open Close Principle sağlandı böylelikle değişken para birimlerinin olabileceği durumlar için farklı pariteler eklendi
-        public abstract string GetCurrencyPrice(int price,string moneyRate);
-        public abstract string GetCurrencyMarketCap();
+        //mesela bir para birimi dolar üzerinden değer dönebilir ya da bitcoin paritesi cinsinden dönebilir.
+        //Bunun için ayrı bir interface oluşturulup farklı bir kontrol de sağlanabilirdi fakat fiyatın öğrenilmesi zorunlu
+        //bir işlem olduğundan dolayı doğrudan abstract olarak tanımlandı. Para Kuru ile bir kontrol sağlandı
+        //Bu yöntem ilerleyen zamanlarda daha farklı bir çözüm ile geliştirilebilir
+        
+        public abstract decimal GetCurrencyPrice(string moneyRate);
+        public abstract decimal GetCurrencyMarketCap();
+        public abstract decimal GetCurrencyCurrentSupply();
 
         public abstract string GetCurrencyAlgorithm();
-        public abstract string CurrencySell();
-        public abstract string CurrencyBuy();
+        public abstract string CurrencySell(decimal amount, string coinId, decimal sellingPrice);
+        public abstract string CurrencyBuy(decimal amount, string coinId, decimal buyingPrice);
 
         //todo (Yanlış örnek) Burada mesela her coin arzı arttırılamaz bu sebepten ötürü burada Single Responsibility ihlal edildi(Yanlış örnek göstermek amacıyla yapıldı)
         public void CurrencySupplyIncrease(int supplyIncreaseAmount)

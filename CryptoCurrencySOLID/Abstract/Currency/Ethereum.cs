@@ -7,24 +7,34 @@ using System.Threading.Tasks;
 
 namespace CryptoCurrencySOLID.Abstract
 {
-    internal class Ethereum : BaseCurrency, IMining
+    internal class Ethereum : BaseCurrency, IMining, ICurrencySendWithAdress
     {
-        public override string CurrencyBuy()
+        public override string CurrencyBuy(decimal amount, string coinId, decimal buyingPrice)
         {
-            throw new NotImplementedException();
+            return String.Concat("Kodu " + coinId + " olan coinden " + amount + " $ tutarında" + buyingPrice + "fiyatından alım gerçekleşti.");
         }
 
-        public override string CurrencySell()
+        public override string CurrencySell(decimal amount, string coinId, decimal sellingPrice)
         {
-            throw new NotImplementedException();
+            return String.Concat("Kodu " + coinId + " olan coinden " + amount + " $ tutarında+" + sellingPrice + " fiyatından satış gerçekleşti.");
+        }
+
+        public string CurrencySendWithAdress(string adress, string coinId, decimal sendingFee, decimal sendingAmount)
+        {
+            return String.Concat(adress + " adrese " + coinId + " coini " + (sendingAmount - sendingFee) + " miktarında gönderildi.");
         }
 
         public override string GetCurrencyAlgorithm()
         {
-            throw new NotImplementedException();
+            return "POW";
         }
 
         public override string GetCurrencyCode()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override decimal GetCurrencyCurrentSupply()
         {
             throw new NotImplementedException();
         }
@@ -34,19 +44,26 @@ namespace CryptoCurrencySOLID.Abstract
             throw new NotImplementedException();
         }
 
-        public override string GetCurrencyMarketCap()
+        public override decimal GetCurrencyMarketCap()
         {
-            throw new NotImplementedException();
+            return 237000000000;
         }
 
         public override string GetCurrencyName()
         {
-            return "etherium";
+            return "Ethereum";
         }
 
-        public override string GetCurrencyPrice(int price, string moneyRate)
+        public override decimal GetCurrencyPrice(string moneyRate)
         {
-            throw new NotImplementedException();
+            if (moneyRate != "Ethereum" && moneyRate=="Dollar")
+            {
+                return (GetCurrencyMarketCap() / GetCurrencyCurrentSupply());
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         public void MiningStart()

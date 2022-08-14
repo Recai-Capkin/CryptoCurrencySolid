@@ -9,19 +9,19 @@ namespace CryptoCurrencySOLID.Abstract
 {
     internal class Tether : BaseCurrency, ICurrencySendWithAdress
     {
-        public override string CurrencyBuy()
+        public override string CurrencyBuy(decimal amount, string coinId, decimal buyingPrice)
         {
-            throw new NotImplementedException();
+            return String.Concat("Kodu "+coinId+" olan coinden " + amount+ " $ tutarında" + buyingPrice + "fiyatından alım gerçekleşti.");
         }
 
-        public override string CurrencySell()
+        public override string CurrencySell(decimal amount, string coinId, decimal sellingPrice)
         {
-            throw new NotImplementedException();
+            return String.Concat("Kodu " + coinId + " olan coinden " + amount + " $ tutarında+" + sellingPrice + " fiyatından satış gerçekleşti.");
         }
 
-        public string CurrencySendWithAdress(string adress, string currencyType, float sendingFee)
+        public string CurrencySendWithAdress(string adress, string coinId, decimal sendingFee, decimal sendingAmount)
         {
-            throw new NotImplementedException();
+            return String.Concat(adress + " adrese " + coinId + " coini " + (sendingAmount - sendingFee) + " miktarında gönderildi.");
         }
 
         public override string GetCurrencyAlgorithm()
@@ -31,6 +31,11 @@ namespace CryptoCurrencySOLID.Abstract
 
         public override string GetCurrencyCode()
         {
+            return "USDT";
+        }
+
+        public override decimal GetCurrencyCurrentSupply()
+        {
             throw new NotImplementedException();
         }
 
@@ -39,7 +44,7 @@ namespace CryptoCurrencySOLID.Abstract
             throw new NotImplementedException();
         }
 
-        public override string GetCurrencyMarketCap()
+        public override decimal GetCurrencyMarketCap()
         {
             throw new NotImplementedException();
         }
@@ -49,9 +54,9 @@ namespace CryptoCurrencySOLID.Abstract
             return "tether";
         }
 
-        public override string GetCurrencyPrice(int price, string moneyRate)
+        public override decimal GetCurrencyPrice(string moneyRate)
         {
-            throw new NotImplementedException();
+            return 1;
         }
     }
 }

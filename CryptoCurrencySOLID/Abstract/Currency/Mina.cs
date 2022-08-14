@@ -7,16 +7,21 @@ using System.Threading.Tasks;
 
 namespace CryptoCurrencySOLID.Abstract
 {
-    internal class Mina : BaseCurrency,IStake
+    internal class Mina : BaseCurrency,IStake,ICurrencySendWithTag
     {
-        public override string CurrencyBuy()
+        public override string CurrencyBuy(decimal amount, string coinId, decimal buyingPrice)
         {
-            throw new NotImplementedException();
+            return String.Concat("Kodu " + coinId + " olan coinden " + amount + " $ tutarında" + buyingPrice + "fiyatından alım gerçekleşti.");
         }
 
-        public override string CurrencySell()
+        public override string CurrencySell(decimal amount, string coinId, decimal sellingPrice)
         {
-            throw new NotImplementedException();
+            return String.Concat("Kodu " + coinId + " olan coinden " + amount + " $ tutarında+" + sellingPrice + " fiyatından satış gerçekleşti.");
+        }
+
+        public string CurrencySendWithTag(string tag, string adress, string coinId, decimal sendingFee, decimal sendingAmount)
+        {
+            return String.Concat(adress + " adrese "+ tag + " tagı ile" + coinId + " coini " + (sendingAmount - sendingFee) + " miktarında gönderildi.");
         }
 
         public override string GetCurrencyAlgorithm()
@@ -29,24 +34,37 @@ namespace CryptoCurrencySOLID.Abstract
             throw new NotImplementedException();
         }
 
+        public override decimal GetCurrencyCurrentSupply()
+        {
+            return 632000000;
+        }
+
         public override string GetCurrencyDescription()
         {
             throw new NotImplementedException();
         }
 
-        public override string GetCurrencyMarketCap()
+        public override decimal GetCurrencyMarketCap()
         {
-            throw new NotImplementedException();
+            return 571000000;
         }
 
         public override string GetCurrencyName()
         {
-            return "mina";
+            return "MINA";
         }
 
-        public override string GetCurrencyPrice(int price, string moneyRate)
+        public override decimal GetCurrencyPrice( string moneyRate)
         {
-            throw new NotImplementedException();
+            Ethereum eth = new Ethereum();
+            if (moneyRate != "MINA" && moneyRate == "Vitalik")
+            {
+                return (GetCurrencyMarketCap() / GetCurrencyCurrentSupply()) / eth.GetCurrencyPrice("Dollar");
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         public void StakeStart()

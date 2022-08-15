@@ -41,7 +41,7 @@ namespace CryptoCurrencySOLID.Abstract.Currency
 
         public override string GetCurrencyDescription()
         {
-            return "";
+            return "Bence çöp bir coin zamanıda iyi fiyatlandı. Para göndermekten başka bir halta yaradığı yok.";
         }
 
         public override decimal GetCurrencyMarketCap()

@@ -9,3 +9,6 @@ Mina.StakeStart();
 
 BaseCurrency baseCurrency = new Tether();
 Console.WriteLine(baseCurrency.CurrencyBuy(15000, baseCurrency.GetCurrencyCode(),24000));
+
+baseCurrency = new Ethereum();
+Console.WriteLine(baseCurrency.GetCurrencyPrice("Dollar"));

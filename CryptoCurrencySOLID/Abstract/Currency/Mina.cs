@@ -26,12 +26,12 @@ namespace CryptoCurrencySOLID.Abstract
 
         public override string GetCurrencyAlgorithm()
         {
-            throw new NotImplementedException();
+            return "POS";
         }
 
         public override string GetCurrencyCode()
         {
-            throw new NotImplementedException();
+            return "MINA";
         }
 
         public override decimal GetCurrencyCurrentSupply()

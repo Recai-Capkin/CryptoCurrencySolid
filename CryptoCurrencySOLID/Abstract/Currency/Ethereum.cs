@@ -31,17 +31,18 @@ namespace CryptoCurrencySOLID.Abstract
 
         public override string GetCurrencyCode()
         {
-            throw new NotImplementedException();
+            return "ETH";
         }
 
         public override decimal GetCurrencyCurrentSupply()
         {
-            throw new NotImplementedException();
+            return 121970000;
         }
 
         public override string GetCurrencyDescription()
         {
-            throw new NotImplementedException();
+            return "Bir protokol olarak tanımlanmıştır. " +
+                "Kendine ağına ait bir kripto parası vardır. Ve Dağıtık çalışan uygulamalar için altyapı sağlar.";
         }
 
         public override decimal GetCurrencyMarketCap()

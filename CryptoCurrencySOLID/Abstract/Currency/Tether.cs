@@ -26,7 +26,7 @@ namespace CryptoCurrencySOLID.Abstract
 
         public override string GetCurrencyAlgorithm()
         {
-            throw new NotImplementedException();
+            return "POR";
         }
 
         public override string GetCurrencyCode()
@@ -36,17 +36,17 @@ namespace CryptoCurrencySOLID.Abstract
 
         public override decimal GetCurrencyCurrentSupply()
         {
-            throw new NotImplementedException();
+            return 66300000000;
         }
 
         public override string GetCurrencyDescription()
         {
-            throw new NotImplementedException();
+            return "1-1 dolar eşliği sağlamaya çalışan bir kripto stabil coin türüdür.";
         }
 
         public override decimal GetCurrencyMarketCap()
         {
-            throw new NotImplementedException();
+            return 66300000000;
         }
 
         public override string GetCurrencyName()

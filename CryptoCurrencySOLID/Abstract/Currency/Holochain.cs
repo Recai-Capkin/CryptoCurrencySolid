@@ -32,27 +32,28 @@ namespace CryptoCurrencySOLID.Abstract
 
         public override string GetCurrencyCode()
         {
-            return "Holo";
+            return "Hot";
         }
 
         public override decimal GetCurrencyCurrentSupply()
         {
-            throw new NotImplementedException();
+            return 177619000000;
         }
 
         public override string GetCurrencyDescription()
         {
-            throw new NotImplementedException();
+            return "Dağıtık bir internet oluşturmayı hedefleyen ve " +
+                "dağıtık uygulamaların çalışması için gerekli altyapıyı oluşturan bir sistemdir.";
         }
 
         public override decimal GetCurrencyMarketCap()
         {
-            return 448000000;
+            return 448000000; 
         }
 
         public override string GetCurrencyName()
         {
-            return "holochain";
+            return "Holo";
         }
 
         public override decimal GetCurrencyPrice(string moneyRate)

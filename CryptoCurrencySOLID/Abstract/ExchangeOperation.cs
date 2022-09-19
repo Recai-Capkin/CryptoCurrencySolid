@@ -27,7 +27,7 @@ namespace CryptoCurrencySOLID.Abstract
         //todo 5 Dependecy Inversion gerekli olan durum burası çünkü her borsa eklendiğinde ayrı ayrı işlemleri de
         //buraya eklememiz gerekiyor bu da bağlılığı arttırıyor alt classların üst classları yönetmesine izin vermemeliyiz
         //bunu düzenlemek lazım bu sebepten ötürü bunu interface aracılığı ile classı tanıtacağız
-
+        //dependency injection ile ilgilidir
         //public void CurrencyAddBinance(string currencyName)
         //{
         //    new Binance().CurrencyAddBinance(currencyName);
